@@ -1,6 +1,6 @@
 import requests
 
-async def make_request(phrase):
+def make_request(phrase):
     base_url = "https://api.sapling.ai/api/v1/paraphrase"
     api_key = "TRSOKJTMCWDS229Q5LNHQIYTHB0L70XZ"
 
@@ -8,8 +8,8 @@ async def make_request(phrase):
         "key": api_key,
         "text": phrase
     }
-    response = await requests.post(base_url, json=data)
-    json = await response.json()
+    response = requests.post(base_url, json=data)
+    json = response.json()
 
     results = []
     try:
