@@ -1,10 +1,13 @@
 from telegram import Update
 from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler
 from src import sapling_api
+import os
+
 
 # BOT INITIALIZATION
 def initialize_bot():
-    application = ApplicationBuilder().token('7454918531:AAEFXXp6ThE2XdaC3MLv29GTOju40ZzvjLA').build()
+    api_key = os.getenv("tgbot_key")
+    application = ApplicationBuilder().token(api_key).build()
 
     start_handler = CommandHandler('start', start)
     application.add_handler(start_handler)
