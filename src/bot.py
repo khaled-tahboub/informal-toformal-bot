@@ -4,15 +4,21 @@ from src import sapling_api
 
 # BOT INITIALIZATION
 def initialize_bot():
-    application = ApplicationBuilder().token('TOKEN').build()
+    application = ApplicationBuilder().token('7454918531:AAEFXXp6ThE2XdaC3MLv29GTOju40ZzvjLA').build()
 
     start_handler = CommandHandler('start', start)
     application.add_handler(start_handler)
+
+    rephrase_handler = CommandHandler('rephrase', get_replacements)
+    application.add_handler(rephrase_handler)
 #
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat_id = update.effective_chat.id
-    await context.bot.send_message(chat_id, "Hello, Let's Goo")
+    await context.bot.send_message(chat_id, "Hello, I'm here to rephrase your informal english..")
+    await context.bot.send_message(chat_id, "Use the /rephrase command followed by the sentence")
+    await context.bot.send_message(chat_id, "Example:\n/rephrase This job is awesome")
+    await context.bot.send_message(chat_id, "You will receive a bunch of suggestions such as:\nThis position is truly remarkable")
 
 async def get_replacements(phrase):
     chat_id = update.effective_chat.id
